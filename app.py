@@ -15,11 +15,14 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    # ignore if message was sent by this bot user
     if message.author == client.user:
         return
 
+    # partition message for ease of use with case / functions
     message_partiton = message.content.partition(' ')
 
+    # match a command or ignore
     match message_partiton[0]:
         case '$ping':
             await message.channel.send('pong')
