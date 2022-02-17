@@ -24,13 +24,21 @@ async def on_message(message):
         case '$ping':
             await message.channel.send('pong')
         case '$price':
-            await price_check(message_partiton[2])
+            await price_check(message, message_partiton[2])
         case _:
             return
 
-async def price_check(message):
-    # check coinbase for price of coin specified
-    print(f'price check request recieved for {message}')
+async def price_check(message, message_body):
+    if not message_body == '':
+        # check coinbase for price of coin specified
+        response = f'price check request recieved for {message_body}'
+    else:
+        response = 'price check request recieved but no coin specified'
+        
+    print(response)
+    await message.channel.send(response)
+    
+
 
 
 client.run(bot_token)
