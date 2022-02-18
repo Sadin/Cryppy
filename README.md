@@ -3,14 +3,14 @@
 A crypto price cheker for discord built with python
 
 ## Commands
----
 
-$ping - pong
+`$ping - pong`
 
-$price - 
+`$price <shortcode>`
+> ex: $price ETH 
 
 ## Todo
----
+
 
 - [ ] support more than just USD
 - [ ] check crypto conversion values
