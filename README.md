@@ -6,8 +6,7 @@ A crypto price cheker for discord built with python
 
 `$ping - pong`
 
-`$price <shortcode>`
-> ex: $price ETH 
+`$price <shortcode>` *example: $price ETH*
 
 ## Todo
 
