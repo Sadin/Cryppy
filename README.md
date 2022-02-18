@@ -4,9 +4,13 @@ A crypto price cheker for discord built with python
 
 ## Commands
 
-`$ping - pong`
+Poll if the bot is running
 
-`$price <shortcode>` *example: $price ETH*
+    $ping
+    
+Check price of coin via its shortcode
+
+    $price ETH
 
 ## Todo
 
