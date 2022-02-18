@@ -18,5 +18,5 @@ Check price of coin via its shortcode
 
 
 - [ ] support more than just USD
-- [ ] check crypto conversion values
+- [ ] check coin to coin conversion values
 - [ ] add historical price data
