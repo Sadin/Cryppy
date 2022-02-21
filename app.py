@@ -31,11 +31,11 @@ async def on_message(message):
         case '$ping':
             await message.channel.send('pong')
         case '$price':
-            await price_check(message, message_partiton[2])
+            await price_check_coinbase(message, message_partiton[2])
         case _:
             return
 
-async def price_check(message, message_body):
+async def price_check_coinbase(message, message_body):
     # check coinbase for price of coin specified
     # handle empty message after command
     if not message_body == '':
