@@ -40,14 +40,13 @@ async def price_check_coinbase(message, message_body):
     # handle empty message after command
     if not message_body == '':
         response = f'price check request recieved for {message_body}'
+        print(response)
+        await message.channel.send(response)
+        
+        price = coinbase_client.get_spot_price(currency_pair=f'{str.upper(message_body)}-USD')
+        response = f'price per {str.upper(message_body)} is {price["amount"]} USD'
     else:
         response = 'price check request recieved but no coin specified'
-
-    print(response)
-    await message.channel.send(response)
-
-    price = coinbase_client.get_spot_price(currency_pair=f'{str.upper(message_body)}-USD')
-    response = f'price per {str.upper(message_body)} is {price["amount"]} USD'
 
     print(response)
     await message.channel.send(response)
