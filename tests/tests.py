@@ -8,9 +8,12 @@ from app.py import parse_currency_pair
 @pytest.mark.parametrize(
     ('input_string', 'expected'),
     (
-        ('ETH USD', ('ETH', 'USD')),
-        ('ETH EUR', ('ETH', 'EUR')),
-        ('ETH USD Additional text for edge case', ('ETH', 'USD'))
+        pytest.param('ETH USD', ('ETH', 'USD'),
+                     id='coin to regular currency'),
+        pytest.param('USD EUR', ('USD', 'EUR'),
+                     id='reg currency to reg currency'),
+        pytest.param('ETH USD Additional text for edge case',
+                     ('ETH', 'USD'), id='trailing extra text')
     )
 )
 def test_parse_currency_pair(input_string: str, expected: tuple):
