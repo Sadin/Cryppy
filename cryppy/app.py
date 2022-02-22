@@ -4,6 +4,7 @@ import os
 from getpass import getpass
 
 import discord
+import helpers
 from coinbase.wallet.client import Client as CoinbaseClient
 
 bot_token = os.environ.get('CRYPPY_TOKEN')
@@ -39,16 +40,13 @@ async def on_message(message):
         case '$ping':
             await message.channel.send('pong')
         case '$price':
-            # input needs to be sanitized so that trailing extra message
-            # text is dropped, but conversion price is not lost
-            currency_pair = message_partiton[2].split(' ', 2)
-            print(currency_pair)
-            await price_check_coinbase(message, currency_pair)
+            await price_check(message,
+                              helpers.parse_currency_pair(message_partiton[2]))
         case _:
             return
 
 
-async def price_check_coinbase(message, pair: list):
+async def price_check(message, pair: tuple):
     # check coinbase for price of coin specified
     # handle empty message after command
     if not len(pair) == 0:
