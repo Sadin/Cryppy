@@ -1,6 +1,6 @@
 # Cryppy
 
-A crypto price cheker for discord built with python.
+A crypto price checker for discord built with python.
 
 Built by:  ![](https://dcbadge.vercel.app/api/shield/208059872791494656?style=flat-square)
 
