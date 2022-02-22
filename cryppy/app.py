@@ -10,6 +10,7 @@ bot_token = os.environ.get('CRYPPY_TOKEN')
 api_key = os.environ.get('API_KEY')
 api_secret = os.environ.get('COINBASE_SECRET')
 
+
 if not bot_token:
     print('No env variable CRYPPY_TOKEN set..\n')
     bot_token = getpass('token: ')
@@ -63,10 +64,6 @@ async def price_check_coinbase(message, pair: list):
 
     print(res)
     await message.channel.send(res)
-
-
-def parse_currency_pair(input_string: str) -> tuple:
-    return tuple(input_string.split(1))
 
 
 if __name__ == '__main__':

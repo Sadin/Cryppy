@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import pytest
 
-import cryppy
+from cryppy.helpers import parse_currency_pair
 
 
 @pytest.mark.parametrize(
@@ -18,4 +18,4 @@ import cryppy
     )
 )
 def test_parse_currency_pair(input_string: str, expected: tuple):
-    assert cryppy.parse_currency_pair(input_string) == expected
+    assert parse_currency_pair(input_string) == expected
