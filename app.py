@@ -32,15 +32,15 @@ async def on_message(message):
 
     # partition message for ease of use with case / functions
     message_partiton = message.content.partition(' ')
-    # input needs to be sanitized so that trailing extra message
-    # text is dropped, but conversion price is not lost
-    currency_pair = message_partiton[2].split(' ', 2)
 
     # match a command or ignore
     match message_partiton[0]:
         case '$ping':
             await message.channel.send('pong')
         case '$price':
+            # input needs to be sanitized so that trailing extra message
+            # text is dropped, but conversion price is not lost
+            currency_pair = message_partiton[2].split(' ', 2)
             print(currency_pair)
             await price_check_coinbase(message, currency_pair)
         case _:
@@ -65,4 +65,9 @@ async def price_check_coinbase(message, pair: list):
     await message.channel.send(res)
 
 
-client.run(bot_token)
+def parse_currency_pair(input_string: str) -> tuple:
+    ...
+
+
+if __name__ == '__main__':
+    client.run(bot_token)
