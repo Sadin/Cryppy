@@ -66,7 +66,7 @@ async def price_check_coinbase(message, pair: list):
 
 
 def parse_currency_pair(input_string: str) -> tuple:
-    ...
+    return tuple(input_string.split(1))
 
 
 if __name__ == '__main__':

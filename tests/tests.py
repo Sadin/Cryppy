@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import pytest
-
 from app.py import parse_currency_pair
 
 
