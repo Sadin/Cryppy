@@ -1,5 +1,6 @@
 import os,discord,requests,string
 from coinbase.wallet.client import Client as CoinbaseClient
+from collections import deque
 from getpass import getpass
 
 bot_token = os.environ.get('CRYPPY_TOKEN')
@@ -25,26 +26,29 @@ async def on_message(message):
 
     # partition message for ease of use with case / functions
     message_partiton = message.content.partition(' ')
+    # input needs to be sanitized so that trailing extra message text is dropped, but conversion price is not lost
+    currency_pair = message_partiton[2].split(' ', 2)
 
     # match a command or ignore
     match message_partiton[0]:
         case '$ping':
             await message.channel.send('pong')
         case '$price':
-            await price_check_coinbase(message, message_partiton[2])
+            print(currency_pair)
+            await price_check_coinbase(message, currency_pair)
         case _:
             return
 
-async def price_check_coinbase(message, message_body):
+async def price_check_coinbase(message, pair: list):
     # check coinbase for price of coin specified
     # handle empty message after command
-    if not message_body == '':
-        response = f'price check request recieved for {message_body}'
+    if not len(pair) == 0:
+        response = f'price check request recieved for {str.upper(pair[0])}'
         print(response)
         await message.channel.send(response)
-        
-        price = coinbase_client.get_spot_price(currency_pair=f'{str.upper(message_body)}-USD')
-        response = f'price per {str.upper(message_body)} is {price["amount"]} USD'
+
+        price = coinbase_client.get_spot_price(currency_pair=f'{str.upper(pair[0])}-{str.upper(pair[1])}')
+        response = f'price per {str.upper(pair[0])} is {price["amount"]} {pair[1]}'
     else:
         response = 'price check request recieved but no coin specified'
 
